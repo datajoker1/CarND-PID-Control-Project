@@ -18,6 +18,12 @@ public:
   double Kd;
 
   /*
+  variables used to compute steering
+  */
+  double cte_prev;
+  double cte_int;
+
+  /*
   * Constructor
   */
   PID();

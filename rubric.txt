@@ -1,0 +1,12 @@
+3.1 Describe the effect each of the P, I, D components had in your implementation.
+steer = -Kp * cte - Kd * diff_cte - Kd * int_cte
+P or proportional controller - steers the vehicle in proportion to the error provided by simulator. If I run my code with only Kp enabled, car oscillates around the center of the road. While it stays on the road for a straight road, on the curved road, it gets off the track. The oscillating behavior of car is expected as discussed in the lecture. 
+
+D or differential controller - steers the vehicle in proportion to the difference in error from the last timestep. Enabling Kd along with Kp in code, dampens the oscillations significantly. Infact, car manages to stay on the track even on the curves just using Kp and Kd.
+
+I or integral controller - steers the vehicle in proportion to the total accumulated error since the beginning. I believe Ki is required only when there is a systematic bias in the system. In our case, introducing even a small value of Ki made the car go off the track. 
+
+3.2 Describe how the final hyperparameters were chosen.
+I tried with calculating parameters using twiddle programmed in the Parameter Optimization Quiz, but parameters obtained doesn't work out on the simulator. 
+But manual hyperparameter tuning This actually worked reasonably well
+Car overshooting at the curves meant I need higher Kp, so I kept increasing the Kp by 0.05 at a time. I simultaneously increased Kd to remove oscillations from the car. Final values I settle for were Kp=0.2 and Kd==3
